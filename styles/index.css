@@ -36,7 +36,7 @@ header img {
 
 }
 
-.dog-display img {
+.dog-profile-picture {
     height: 100%;
     width: 100%;
     position: relative;
@@ -87,9 +87,32 @@ header img {
     box-shadow: 0 10px 20px #e9e9ea;
 }
 
+.like-button:hover {
+    background-color: #DBFFF4;
+    box-shadow: 0 10px 20px #CCF1E6;
+}
+
+.dislike-button:hover {
+    background-color: #FFE7EF;
+    box-shadow: 0 10px 20px #EDD9DF;
+}
+
 .interaction-button img {
     height: 2rem;
     width: 2rem;
     margin-left: auto;
     margin-right: auto;
+}
+
+.interaction-badge {
+    width: 230px;
+    z-index: 4;
+    position: absolute;
+    top: 4em;
+    left: 2em;
+    transform: rotate(-30deg);
+}
+
+.hidden {
+    display: none;
 }
