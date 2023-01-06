@@ -3,6 +3,7 @@
 body {
     margin: 0;
     font-family: 'Poppins', Tahoma, sans-serif;
+    background-image: linear-gradient(#FFFFFF, #F6F7FB) ;
 }
 
 main {
@@ -13,6 +14,7 @@ header {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    background-color: #ffffff;
 }
 header img {
     height: 2.525em;
@@ -30,40 +32,41 @@ header img {
     right: .5em;
     overflow: hidden;
     text-align: left;
+    border-radius: .5em;
+
 }
 
 .dog-display img {
     height: 100%;
+    width: 100%;
     position: relative;
-    object-fit: fill;
+    object-fit: cover;
+    background-position: center center;
 }
 
 .detail-overlay {
     position: absolute;
-    bottom: 30px;
+    bottom: 1em;
     left: 18px;
     font-weight: bold;
     text-align: left;
-}
-
-.detail {
-    position: absolute;
-    left: 1.4rem;
     font-family: 'Poppins', Tahoma, sans-serif;
     color: white;
 }
 
-.dog-name {
-    bottom: 1.8em;
+.detail {
+    margin-block-end: 0;
+    margin-block-start: 0;
+    line-height: 1.5em;
 }
 
 .dog-opener {
-    bottom: 1.2em;
     color: #b7b7b7;
+    font-weight: lighter;
+
 }
 
 .interactions {
-    background-image: linear-gradient(red, yellow) ;
 
     height: 8em;
     width: 100%;
@@ -81,6 +84,7 @@ header img {
     border-radius: 50%;
     display: flex;
     align-items: center;
+    box-shadow: 0 10px 20px #e9e9ea;
 }
 
 .interaction-button img {
