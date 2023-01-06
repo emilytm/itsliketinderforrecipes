@@ -1,7 +1,8 @@
 <html>
-    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
         <link rel="stylesheet" href="./styles/index.css">
-    </head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />    </head>
     <body>
         <header>
             <img class="profile" src="./images/icon-profile.png" alt="header profile icon">
@@ -10,13 +11,19 @@
         </header>
         <main>
             <section class="dog-display">
-                <img class="dog-profile-picture" src="./images/dog-bella.jpg">
-                <h2 class="dog-name detail">Dog name</h2>
-                <p class="dog-opener detail">Dog opener</p>
+                <img src="../images/dog-bella.jpg" alt="dog profile picture">
+                <div class="detail-overlay">
+                    <h2 class="dog-name detail">Dog name</h2>
+                    <p class="dog-opener detail">Dog opener</p>    
+                </div>
             </section>
             <section class="interactions">
-                <img class="dislike-button" src="./images/icon-cross.png" alt="dislike button">
-                <img class="like-button" src="./images/icon-heart.png" alt="like button">
+                <div class="interaction-button">
+                    <img class="dislike-button" src="./images/icon-cross.png" alt="dislike button">
+                </div>
+                <div class="interaction-button">
+                    <img class="like-button" src="./images/icon-heart.png" alt="like button">
+                </div>
             </section>
         </main>
         <script src="/index.js" type="module"></script>
