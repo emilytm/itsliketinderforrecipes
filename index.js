@@ -2,8 +2,8 @@
 import { dogs } from './data.js'
 import { Dog } from './Dog.js'
 
-
-let currentDog = new Dog(dogs.shift())
+let dogArray = Array.from(dogs)
+let currentDog = new Dog(dogArray.shift())
 const likeButton = document.getElementById('like-button')
 const dislikeButton = document.getElementById('dislike-button')
 
@@ -11,11 +11,31 @@ likeButton.addEventListener('click',likeDog)
 dislikeButton.addEventListener('click', dislikeDog)
 
 function likeDog(){
-    flashBadge(1)
+    handleInteraction(1)
 }
 
 function dislikeDog(){
-    flashBadge(0)
+    handleInteraction(0)
+}
+
+function handleInteraction(preference){
+    let dogLiked = dogs.find(dog => dog.id === currentDog.id)
+    if(preference){
+        dogLiked.hasBeenLiked = true
+    }
+    dogLiked.hasBeenSwiped = true
+    flashBadge(preference)
+
+    setTimeout( () => {
+        if(dogArray.length > 0){
+            currentDog = getNextDog()
+
+
+            renderDog(currentDog)
+        } else {
+            showEmptyState()
+        }
+    },"1000")
 }
 
 function flashBadge(preference) {
@@ -48,9 +68,32 @@ function flashBadge(preference) {
     //      haven't been swiped, show the dog
 
 
+
 function renderDog(Dog){
     const dogDisplaySection = document.getElementById('dog-display')
     dogDisplaySection.innerHTML = Dog.getDogHtml()
+}
+
+function getNextDog(){
+    if(dogArray.length > 0){
+        return new Dog(dogArray.shift())
+    } else {
+        showEmptyState()
+    }
+}
+
+function showEmptyState() {
+    const dogDisplaySection = document.getElementById('dog-display')
+    const emptyStateHtml = `
+        <img src="../images/empty-state.jpg" class="dog-profile-picture" alt="empty state sad dog image">
+        <div class="detail-overlay">
+            <h2 class="dog-name detail">No more dogs, sorry!</h2>
+            <p class="dog-opener detail">Try again tomorrow.</p>    
+        </div>    
+    `
+    dogDisplaySection.innerHTML = emptyStateHtml
+    likeButton.classList.add('hidden')
+    dislikeButton.classList.add('hidden')
 }
 
 renderDog(currentDog)
