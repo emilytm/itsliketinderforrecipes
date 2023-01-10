@@ -12,15 +12,27 @@ likeButton.addEventListener('click',likeDog)
 dislikeButton.addEventListener('click', dislikeDog)
 
 function likeDog(){
-    let interactionBadge = document.getElementById('interaction-badge')
-    interactionBadge.setAttribute('src','../images/badge-like.png')
-    interactionBadge.classList.remove('hidden')
+
+    flashBadge(1)
 }
 
 function dislikeDog(){
+
+    flashBadge(0)
+}
+
+function flashBadge(preference) {
     let interactionBadge = document.getElementById('interaction-badge')
-    interactionBadge.setAttribute('src','../images/badge-nope.png')
+
+    if(preference) {
+        interactionBadge.setAttribute('src','../images/badge-like.png')
+    } else {
+        interactionBadge.setAttribute('src','../images/badge-nope.png')
+    }
     interactionBadge.classList.remove('hidden')
+    setTimeout( () => {
+        interactionBadge.classList.add('hidden')
+    },"1000")
 }
 
 //Display the first dog
