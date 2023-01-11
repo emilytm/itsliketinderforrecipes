@@ -42,6 +42,8 @@ header img {
     padding-right: 1.25em;
 }
 
+/*-- Main section where dog profile picture and info is displayed --*/
+
 .dog-display {
     grid-area: 'dog-display-section';
     width: 100%;
@@ -53,13 +55,6 @@ header img {
     margin-right: auto;
     display: flex;
     flex-direction: column;
-}
-
-.dog-profile-picture {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    background-position: center center;
 }
 
 /*-- Overlaid dog name and bio styling and formatting --*/
