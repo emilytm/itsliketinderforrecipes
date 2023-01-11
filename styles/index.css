@@ -7,15 +7,33 @@ body {
 }
 
 main {
+    max-width: 500px;
+    height: 92vh;
+    padding-left: .5em;
+    padding-right: .5em;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-rows: auto minmax(2.2rem,14vh);
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "dog-display-section"
+        "interaction-section"
+    ;
+    flex-direction: column;
 }
 
 header {
-    height: 5em;
-    width: 100%;
+    grid-area: 'header-nav';
+    height: 8vh;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     justify-content: space-between;
     background-color: #ffffff;
 }
+
 header img {
     height: 2.525em;
     margin-top: auto;
@@ -25,33 +43,34 @@ header img {
 }
 
 .dog-display {
-    position: absolute;
-    top: 5em;
-    bottom: 8em;
-    left: .5em;
-    right: .5em;
-    overflow: hidden;
+    grid-area: 'dog-display-section';
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
     text-align: left;
     border-radius: .5em;
-
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .dog-profile-picture {
     height: 100%;
     width: 100%;
-    position: relative;
     object-fit: cover;
     background-position: center center;
 }
 
+/*-- Overlaid dog name and bio styling and formatting --*/
+
 .detail-overlay {
-    position: absolute;
-    bottom: 1em;
-    left: 18px;
     font-weight: bold;
     text-align: left;
     font-family: 'Poppins', Tahoma, sans-serif;
     color: white;
+
+    margin: auto 1em 1.5em 1em;
 }
 
 .detail {
@@ -63,15 +82,12 @@ header img {
 .dog-opener {
     color: #b7b7b7;
     font-weight: lighter;
-
 }
 
-.interactions {
+/*-- Like and Dislike Buttons and the area they are in --*/
 
-    height: 8em;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
+.interactions {
+    grid-area: 'interaction-section';
     display: flex;
     align-items: center;
     justify-content:center;
@@ -104,14 +120,19 @@ header img {
     margin-right: auto;
 }
 
+/*-- Like/Nope Badge Overlay --*/
+
 .interaction-badge {
     width: 230px;
     z-index: 4;
-    position: absolute;
-    top: 4em;
-    left: 2em;
+    margin-bottom: auto;
+    margin-top: 5em;
+    margin-left: 3em;
     transform: rotate(-30deg);
+    
 }
+
+/*-- Utilities --*/
 
 .hidden {
     display: none;

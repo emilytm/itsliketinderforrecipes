@@ -27,7 +27,7 @@ const dogs = [
     },{
         id: 4,
         name: "Max",
-        avatar: "images/dog-max.jpg",
+        avatar: "images/dog-max.png",
         age: 42,
         bio: "Cute n perfect :)",
         hasBeenSwiped: false,

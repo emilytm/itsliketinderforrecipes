@@ -1,36 +1,38 @@
-// Remember to import the data and Dog class!
 import { dogs } from './data.js'
 import { Dog } from './Dog.js'
 
 let dogArray = Array.from(dogs)
 let currentDog = new Dog(dogArray.shift())
-const likeButton = document.getElementById('like-button')
-const dislikeButton = document.getElementById('dislike-button')
 
-likeButton.addEventListener('click',likeDog)
-dislikeButton.addEventListener('click', dislikeDog)
+document.addEventListener('click',function(e){
 
-function likeDog(){
-    handleInteraction(1)
-}
+    if(e.target.dataset.btn === 'like'){
+        handleInteraction(1)
+    } else if (e.target.dataset.btn === 'dislike'){
+        handleInteraction(0)
+    }
+})
 
-function dislikeDog(){
-    handleInteraction(0)
-}
+//Update the dog's data depending on whether they were liked or disliked, and call fns to show badge and get next dog
 
 function handleInteraction(preference){
+
     let dogLiked = dogs.find(dog => dog.id === currentDog.id)
+
+    document.getElementById('like-button').disabled = true
+    document.getElementById('dislike-button').disabled = true
+
     if(preference){
         dogLiked.hasBeenLiked = true
     }
+
     dogLiked.hasBeenSwiped = true
+
     flashBadge(preference)
 
     setTimeout( () => {
         if(dogArray.length > 0){
             currentDog = getNextDog()
-
-
             renderDog(currentDog)
         } else {
             showEmptyState()
@@ -38,43 +40,42 @@ function handleInteraction(preference){
     },"1000")
 }
 
+//Show the appropriate badge based on the user's preference, then hide after 1 sec
+
 function flashBadge(preference) {
-    let interactionBadge = document.getElementById('interaction-badge')
+
+    const interactionBadge = document.getElementById('interaction-badge')
 
     if(preference) {
         interactionBadge.setAttribute('src','../images/badge-like.png')
     } else {
         interactionBadge.setAttribute('src','../images/badge-nope.png')
     }
+
     interactionBadge.classList.remove('hidden')
+    
     setTimeout( () => {
         interactionBadge.classList.add('hidden')
     },"1000")
 }
 
-//Display the first dog
-//Handle the interaction
-////If like, show like button and move image off to the right
-    ////Show badge
-    ////Translate off screen
-    ////Mark dog as hasBeenSwiped
-    ////Mark dog as hasBeenLiked
-////If dislike, show dislike badge and move image off to the left
-    ////Show badge
-    ////Translate off screen
-    ////Mark dog as hasBeenSwiped
-////Show the next dog
-    ////If there are more dogs in the array and the dogs 
-    //      haven't been swiped, show the dog
-
-
+//Display dog's profile picture and details
 
 function renderDog(Dog){
+
     const dogDisplaySection = document.getElementById('dog-display')
+
     dogDisplaySection.innerHTML = Dog.getDogHtml()
+    dogDisplaySection.style.backgroundImage = `url(${'../'+Dog.avatar})`
+
+    document.getElementById('like-button').disabled = false
+    document.getElementById('dislike-button').disabled = false
 }
 
+//Get the next dog if there is one. If there isn't, call the empty state fn to update interface
+
 function getNextDog(){
+
     if(dogArray.length > 0){
         return new Dog(dogArray.shift())
     } else {
@@ -82,18 +83,23 @@ function getNextDog(){
     }
 }
 
+//Show the empty state dog and msg and hide the interaction buttons
+
 function showEmptyState() {
+
     const dogDisplaySection = document.getElementById('dog-display')
     const emptyStateHtml = `
-        <img src="../images/empty-state.jpg" class="dog-profile-picture" alt="empty state sad dog image">
         <div class="detail-overlay">
             <h2 class="dog-name detail">No more dogs, sorry!</h2>
             <p class="dog-opener detail">Try again tomorrow.</p>    
         </div>    
     `
+
+    dogDisplaySection.style.backgroundImage = `url('../images/empty-state.jpg')`
     dogDisplaySection.innerHTML = emptyStateHtml
-    likeButton.classList.add('hidden')
-    dislikeButton.classList.add('hidden')
+
+    document.getElementById('like-button').classList.add('hidden')
+    document.getElementById('dislike-button').classList.add('hidden')
 }
 
 renderDog(currentDog)
