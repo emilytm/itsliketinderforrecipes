@@ -66,7 +66,7 @@ function renderDog(Dog){
     const dogDisplaySection = document.getElementById('dog-display')
 
     dogDisplaySection.innerHTML = Dog.getDogHtml()
-    dogDisplaySection.style.backgroundImage = `url(${'../'+Dog.avatar})`
+    dogDisplaySection.style.backgroundImage = `url(${'./'+Dog.avatar})`
 
     document.getElementById('like-button').disabled = false
     document.getElementById('dislike-button').disabled = false
